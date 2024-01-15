@@ -18,8 +18,14 @@ Download Software
 - [Postgres (16.1.1)](https://sbp.enterprisedb.com/getfile.jsp?fileid=1258792)
 - [NodeJs (20.11.0)](https://nodejs.org/dist/v20.11.0/node-v20.11.0-x64.msi)
 
-Server (Dependencies)
+### Server (Dependencies)
 
--
+Install express to create backend server, pg for database connection.
+
+- `npm install express pg cors`
+- `npm install body-parser`
+- `npm install nodemon`
 
 Client (Dependencies)
+
+-
