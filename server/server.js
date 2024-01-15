@@ -9,9 +9,12 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Routes
+// Test Routes
 const apiRoutes = require('./routes/api');
 app.use('/api', apiRoutes);
+
+// User Login Route
+
 
 // Start the server
 app.listen(PORT, () => {
