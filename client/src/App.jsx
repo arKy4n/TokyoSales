@@ -1,20 +1,28 @@
-import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Login from "./components/Login";
+import SignUp from "./components/signup";
 
-import Login from './Login';
-import SignUp from './SignUp';
+function App() {
+  const [isLogin, setIsLogin] = useState(true);
 
-const App = () => {
-  const handleLogin = (credentials) => {
-    console.log('Logging in with: ', credentials);
+  const togglePage = () => {
+    setIsLogin((prev) => !prev);
   };
 
+  useEffect(() => {
+    console.log("Component has re-rendered");
+  }, []);
+
   return (
-    <div className="container">
-      <h1>My App</h1>
-      <Login onLogin={handleLogin} />
+    <div>
+      <h1>My Site</h1>
+      {isLogin ? (
+        <Login togglePage={togglePage} />
+      ) : (
+        <SignUp togglePage={togglePage} />
+      )}
     </div>
   );
-};
+}
 
 export default App;
