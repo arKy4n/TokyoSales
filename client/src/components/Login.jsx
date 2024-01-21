@@ -1,25 +1,28 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Login({ togglePage }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [combinedValue, setCombinedValue] = useState("");
 
-  function onSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
 
     alert(username + "_" + password);
-    return false;
-  }
 
-  useEffect(() => {
-    setCombinedValue(`${username}_${password}`);
-  }, [username, password]);
+    axios
+      .post("http://localhost:5000/login", { username, password })
+      .then((res) => {
+        console.log(res.status);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <div>
       <h1>Login Page</h1>
-      <form action="" onSubmit={onSubmit}>
+      <form action="" onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input
           type="text"
