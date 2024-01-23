@@ -6,21 +6,16 @@ function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const handleLogin = async ()=>{
-        try{
-            const response= await axios.post('http://localhost:5000/api/login',{
-                username,
-                password
-            });
 
-            if (response.status === 200) {
-                console.log('Login successful!');
-              } else {
-                console.error('Login failed.');
-              }
-        }
-        catch(error){
-            console.error('Error during login',error);
-        }
+        alert(username + "_" + password);
+    
+        axios
+          .post("http://localhost:5000/login", { username, password })
+          .then((res) => {
+            console.log(res.status);
+            console.log(res.data);
+          })
+          .catch((err) => console.log(err));
 
     }
 
