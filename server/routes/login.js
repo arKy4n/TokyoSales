@@ -2,8 +2,6 @@ const express = require('express');
 const router = require('router');
 const pool = require('../db');
 
-const users = []; // In-memory storage for demo purposes
-
 router.post('/login', async (req, res) => {
   try{
   const sql = "SELECT * FROM users WHERE username = $1 AND password = $2";
