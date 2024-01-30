@@ -4,6 +4,7 @@ const User = require("../models/user");
 
    const testUserLogin = async (req, res)=>{
     const {username, password}=req.body;
+    console.log(username);
     const User1= new User(username,password);
     try{
     const result = await User1.UserLogin();
@@ -19,10 +20,10 @@ const User = require("../models/user");
   }
 
   const testUserSignUp = async (req, res)=>{
-    const {username, password, userId, name, adress}=req.body;
-    const User1= new User(username, password, userId, name, adress);
+    const {username, password, name, address}=req.body;
+    const User1= new User(username, password, name, address);
     try{
-      User1.UserSignUp();
+    User1.UserSignUp();
     const result = await User1.UserLogin();
       if (result > 0) {
           res.status(200).json({ success: true, message: 'SignUp successful' });

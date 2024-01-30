@@ -6,10 +6,11 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
+  console.log(username, password, name, address);
   function handleLogin(event){
     event.preventDefault();
     axios
-      .put("http://localhost:5000/user/signUp", { username, password,name, address})
+      .post("http://localhost:5000/user/signUp", { username, password, name, address})
       .then((res) => {
         console.log(res.status);
         console.log(res.data);
