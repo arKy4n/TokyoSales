@@ -14,7 +14,7 @@ const apiRoutes = require("./routes/api");
 app.use("/api", apiRoutes);
 
 // User User Route
-const userRoutes = require("./routes/login");
+const userRoutes = require("./routes/user");
 app.use("/user", userRoutes);
 
 // Route for Home Page
