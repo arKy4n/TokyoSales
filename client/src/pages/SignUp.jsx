@@ -1,6 +1,6 @@
-function SignUp(props) {
+function SignUp() {
   return (
-    <div>
+    <>
       <h1>Create a new Account</h1>
       <label htmlFor="username">Username:</label>
       <input type="text" id="username" name="usename" />
@@ -11,9 +11,9 @@ function SignUp(props) {
       <input type="submit" value="Submit" />
       <p>
         Already have an account?
-        <button onClick={props.togglePage}>Login</button>
+        <button>Login</button>
       </p>
-    </div>
+    </>
   );
 }
 

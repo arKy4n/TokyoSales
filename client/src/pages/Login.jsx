@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
-function Login({ togglePage }) {
+function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,16 +11,15 @@ function Login({ togglePage }) {
     alert(username + "_" + password);
 
     axios
-      .post("http://localhost:5000/login", { username, password })
+      .post("http://localhost:5000/user/login", { username, password })
       .then((res) => {
-        console.log(res.status);
         console.log(res.data);
       })
       .catch((err) => console.log(err));
   }
 
   return (
-    <div>
+    <>
       <h1>Login Page</h1>
       <form action="" onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
@@ -28,12 +27,11 @@ function Login({ togglePage }) {
           type="text"
           id="username"
           name="username"
-          value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <label htmlFor="password">Password:</label>
         <input
-          type="password"
+          type="text"
           id="password"
           name="password"
           onChange={(e) => setPassword(e.target.value)}
@@ -41,9 +39,9 @@ function Login({ togglePage }) {
         <input type="submit" value="Submit" />
       </form>
       <p>
-        Do not have an account? <button onClick={togglePage}>Sign Up</button>
+        Do not have an account? <button>Sign Up</button>
       </p>
-    </div>
+    </>
   );
 }
 

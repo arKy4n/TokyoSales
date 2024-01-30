@@ -13,9 +13,13 @@ app.use(bodyParser.json());
 const apiRoutes = require("./routes/api");
 app.use("/api", apiRoutes);
 
-// User Login Route
-const loginRoutes = require("./routes/login");
-app.use("/login", loginRoutes);
+// User User Route
+const userRoutes = require("./routes/login");
+app.use("/user", userRoutes);
+
+// Route for Home Page
+const homeRoutes = require("./routes/home");
+app.use("/home", homeRoutes);
 
 // Start the server
 app.listen(PORT, () => {

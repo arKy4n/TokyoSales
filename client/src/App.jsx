@@ -1,27 +1,21 @@
-import { useEffect, useState } from "react";
-import Login from "./components/Login";
-import SignUp from "./components/signup";
+import React from "react";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { Navbar } from "./components/navbar";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function App() {
-  const [isLogin, setIsLogin] = useState(true);
-
-  const togglePage = () => {
-    setIsLogin((prev) => !prev);
-  };
-
-  useEffect(() => {
-    console.log("Component has re-rendered");
-  }, []);
-
   return (
-    <div>
-      <h1>My Site</h1>
-      {isLogin ? (
-        <Login togglePage={togglePage} />
-      ) : (
-        <SignUp togglePage={togglePage} />
-      )}
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" />
+        <Route path="/Login" Component={Login} />
+        <Route path="/SignUp" Component={SignUp} />
+      </Routes>
+    </Router>
   );
 }
 
