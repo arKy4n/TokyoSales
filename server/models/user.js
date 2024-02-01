@@ -10,7 +10,7 @@ class User {
   async login() {
     const sql = "SELECT * FROM users WHERE username = $1 AND password = $2";
     const values = [this.username, this.password];
-    console.log("check2");
+
     const result = await pool.query(sql, values);
     return result.rowCount;
   }

@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
+import { Route, Link } from "react-router-dom";
+import Login from "./Login";
 
 function SignUp() {
   const [username, setUsername] = useState("");
@@ -18,6 +20,14 @@ function SignUp() {
         console.log(res.data);
       })
       .catch((err) => console.log(err));
+  }
+
+  function handleClick() {
+    return (
+      <>
+        <Route path="/login" Component={Login} />
+      </>
+    );
   }
 
   return (
@@ -49,7 +59,9 @@ function SignUp() {
       </form>
       <p>
         Already have an account?
-        <button>Login</button>
+        <button onClick={handleClick}>
+          <Link to="/Login"> Login </Link>
+        </button>
       </p>
     </>
   );

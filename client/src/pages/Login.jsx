@@ -1,5 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
+
+// Style
+import "./Login.css";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -38,8 +42,12 @@ function Login() {
         />
         <input type="submit" value="Submit" />
       </form>
+
       <p>
-        Do not have an account? <button>Sign Up</button>
+        Do not have an account?{" "}
+        <button>
+          <Link to="/SignUp"> SignUp </Link>
+        </button>
       </p>
     </>
   );

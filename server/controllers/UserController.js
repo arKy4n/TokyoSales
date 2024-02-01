@@ -27,9 +27,9 @@ const UserSignUp = async (req, res) => {
     console.log(username, password, email);
 
     await user.signUp();
-    console.log("Check1");
+
     const result = await user.login();
-    console.log("Check");
+
     if (result > 0) {
       res.status(200).json({ success: true, message: "SignUp successful" });
     } else {
