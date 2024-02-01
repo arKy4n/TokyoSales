@@ -66,6 +66,7 @@ function SignUp() {
       >
         Submit
       </button>
+      
     </body>
   );
 }

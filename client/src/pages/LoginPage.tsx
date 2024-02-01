@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  function handleLogin(event){
+  function handleLogin(event) {
     event.preventDefault();
-    console.log('clicked');
+    console.log("clicked");
     alert(username + "_" + password);
 
     axios
@@ -16,7 +17,7 @@ function Login() {
         console.log(res.data);
       })
       .catch((err) => console.log(err));
-  };
+  }
 
   return (
     <body className="body-container">
@@ -40,16 +41,13 @@ function Login() {
         />
       </div>
 
-      <button
-        type="button"
-        className="btn btn-primary"
-        onClick={handleLogin}
-      >
+      <button type="button" className="btn btn-primary" onClick={handleLogin}>
         Submit
       </button>
 
-      <p>{username}</p>
-      <p>{password}</p>
+      <button type="button">
+        <Link to="/home/signUp">SignUp</Link>
+      </button>
     </body>
   );
 }
