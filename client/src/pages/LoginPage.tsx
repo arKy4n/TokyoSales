@@ -20,7 +20,7 @@ function Login() {
   }
 
   return (
-    <body className="body-container">
+    <div className="body-container">
       <h1>Login</h1>
       <div className="item-container">
         <label className="form-label">Email address</label>
@@ -48,7 +48,7 @@ function Login() {
       <button type="button">
         <Link to="/home/signUp">SignUp</Link>
       </button>
-    </body>
+    </div>
   );
 }
 

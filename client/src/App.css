@@ -1,23 +1,28 @@
+#root{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .body-container {
-  display: flex;
+  display:flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   margin: 30px;
   padding: 30px 10px;
-  width: 50%;
   gap: 30px;
+  width: 50%;
   background-color: rgb(142, 153, 119);
 }
 
 .item-container {
-  display: flex;
-    align-items: start;
+    display: flex;
+    align-items: center;
     flex-direction: column;
 }
 
-.app-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.navbar {
+  gap: 10px;
+  align-items:end;
 }

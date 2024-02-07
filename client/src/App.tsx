@@ -11,11 +11,9 @@ function App() {
     <Router>
       <Navbar/>
       <Routes>
-        <div className="app-container">
         <Route path="/home" Component={HomePage} />
         <Route path="/home/login" Component={Login} />
         <Route path="/home/signup" Component={SignUp} />
-        </div>
       </Routes>
     </Router>
   );
