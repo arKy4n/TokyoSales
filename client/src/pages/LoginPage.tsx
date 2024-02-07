@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate=useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   function handleLogin(event) {
@@ -15,8 +16,14 @@ function Login() {
       .then((res) => {
         console.log(res.status);
         console.log(res.data);
+        if(res.status===200){
+        const {success, message, token}=res.data;
+        localStorage.setItem('token', token);
+        navigate("/home/user");
+        }
       })
       .catch((err) => console.log(err));
+
   }
 
   return (
