@@ -37,12 +37,10 @@ const User = require("../models/user");
   }
 
   const getuserData = async (req, res)=>{
-    console.log("what");
     const User1= new User();
     User1.UserId=req.user.Id;
     try{
     const result = await User1.getData();
-    console.log(result.rows[0]);
           res.status(200).json({ success: true, message: 'SignUp successful', userdata: result.rows[0]});
           // res.status(401).json({ success: false, message: 'Not Success' });
     } catch (err){

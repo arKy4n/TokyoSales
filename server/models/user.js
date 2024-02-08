@@ -30,7 +30,6 @@ class User {
         const result = await pool.query(sql, values);
     }
     async getData(){
-        console.log("reached");
         const sql = "SELECT * FROM users WHERE userid = $1" ;
         const values=[this.UserId];
         const result = await pool.query(sql, values);
