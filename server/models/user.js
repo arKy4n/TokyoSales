@@ -8,16 +8,22 @@ class User {
     this.email = email;
   }
   async login() {
-    const sql = "SELECT * FROM users WHERE username = $1 AND password = $2";
-    const values = [this.username, this.password];
+    const sql = "SELECT password, userid FROM users WHERE username = $1";
+    const values = [this.username];
 
     const result = await pool.query(sql, values);
-    return result.rowCount;
+    return result;
   }
   async signUp() {
     const sql = "INSERT INTO users VALUES (DEFAULT, $1, $2, $3)";
     const values = [this.username, this.password, this.email];
     await pool.query(sql, values);
+  }
+  async getAccountInfo(userId) {
+    const sql = "Select * FROM users WHERE userid = $1";
+    const values = [userId];
+    const result = await pool.query(sql, values);
+    return result;
   }
 }
 

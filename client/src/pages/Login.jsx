@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../provider/authProvider";
 
 // Style
 import "./Login.css";
@@ -8,6 +9,9 @@ import "./Login.css";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const { setToken } = useAuth();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -17,7 +21,10 @@ function Login() {
     axios
       .post("http://localhost:5000/user/login", { username, password })
       .then((res) => {
-        console.log(res.data);
+        const { success, message, token } = res.data;
+        // console.log(token);
+        setToken(token);
+        navigate("/Account");
       })
       .catch((err) => console.log(err));
   }
@@ -40,7 +47,7 @@ function Login() {
           name="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Login" />
       </form>
 
       <p>
