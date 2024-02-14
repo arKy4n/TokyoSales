@@ -4,11 +4,12 @@ const {
   UserSignUp,
   UserInfo,
 } = require("../controllers/UserController");
+const { verifyToken } = require("../utils/utilities");
 
 const router = express.Router();
 
 router.post("/login", UserLogin);
 router.put("/signUp", UserSignUp);
-router.get("/account", UserInfo);
+router.get("/account", verifyToken, UserInfo);
 
 module.exports = router;

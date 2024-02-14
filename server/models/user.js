@@ -12,6 +12,7 @@ class User {
     const values = [this.username];
 
     const result = await pool.query(sql, values);
+    // console.log("Result: ", result.rows[0]);
     return result;
   }
   async signUp() {
@@ -19,9 +20,9 @@ class User {
     const values = [this.username, this.password, this.email];
     await pool.query(sql, values);
   }
-  async getAccountInfo(userId) {
+  async getAccountInfo() {
     const sql = "Select * FROM users WHERE userid = $1";
-    const values = [userId];
+    const values = [this.userId];
     const result = await pool.query(sql, values);
     return result;
   }

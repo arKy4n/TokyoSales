@@ -13,20 +13,23 @@ function Login() {
 
   const { setToken } = useAuth();
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     alert(username + "_" + password);
 
-    axios
-      .post("http://localhost:5000/user/login", { username, password })
-      .then((res) => {
-        const { success, message, token } = res.data;
-        // console.log(token);
-        setToken(token);
-        navigate("/Account");
-      })
-      .catch((err) => console.log(err));
+    try {
+      const response = await axios.post("http://localhost:5000/user/login", {
+        username,
+        password,
+      });
+      const { success, message, token } = response.data;
+      console.log("token:", token);
+      setToken(token);
+    } catch (err) {
+      console.log(err);
+    }
+    navigate("/Account");
   }
 
   return (

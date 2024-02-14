@@ -1,26 +1,19 @@
 const e = require("express");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const { generateToken, verifyPassword } = require("../utils/utilities");
 
 const UserLogin = async (req, res) => {
   try {
     const { username, password } = req.body;
-
     const user = new User(username, password);
 
     const queryResult = await user.login();
-    const DBpassword = queryResult.rows[0].password;
-    const DBuserId = queryResult.rows[0].userid;
-    let result = false;
-    // console.log(DBpassword, DBuserId);
-    if (user.password === DBpassword) {
-      result = true;
-      user.userId = DBuserId;
-    }
-    if (result) {
-      const token = jwt.sign({ ID: DBuserId }, "secretKey", {
-        expiresIn: "1h",
-      });
+    const { password: DBpassword, userid: DBuserId } = queryResult.rows[0];
+
+    if (verifyPassword(user.password, DBpassword)) {
+      const token = generateToken(DBuserId);
+      // console.log("Genrate token: ", token);
       res
         .status(200)
         .json({ success: true, message: "Login successful", token: token });
@@ -55,30 +48,22 @@ const UserSignUp = async (req, res) => {
   }
 };
 const UserInfo = async (req, res) => {
-  console.log("Check3");
-  const authHeader = req.headers.authorization;
+  // console.log("Check3");
 
-  const token = authHeader.split(" ")[1];
-  console.log(token);
-  // if (!token) {
-  //   res.status(401).json({ success: false, message: "Invalid user!" });
-  // }
-  jwt.verify(token, "secretKey", (err, decodedToken) => {
-    if (err) {
-      res.status(403).json({ success: false, message: "Forbidden access!" });
-    }
-    req.user = decodedToken;
-    console.log(decodedToken);
-    const user = new User();
-    try {
-      const result = user.getAccountInfo(req.user.ID);
-      console.log(result);
-      res.status(200).json({ success: true, message: "User Information" });
-    } catch (err) {
-      console.log("Invalid User");
-      res.status(500).json({ success: false, message: "No data found" });
-    }
-  });
+  const user = new User();
+  user.userId = req.user.Id;
+  const result = await user.getAccountInfo();
+  console.log(result.rows[0]);
+  try {
+    res.status(200).json({
+      success: true,
+      message: "User Information",
+      userData: result.rows[0],
+    });
+  } catch (err) {
+    console.log("Invalid User");
+    res.status(500).json({ success: false, message: "No data found" });
+  }
 };
 
 module.exports = { UserLogin, UserSignUp, UserInfo };
