@@ -8,5 +8,4 @@ router.post('/login', UserController.testUserLogin);
 router.post('/signUp',UserController.testUserSignUp);
 router.get('/userdata',verifyToken, UserController.getuserData);
 
-
 module.exports = router;

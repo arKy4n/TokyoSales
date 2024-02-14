@@ -13,6 +13,8 @@ app.use(bodyParser.json());
 const apiRoutes = require('./routes/api');
 app.use('/api', apiRoutes);
 
+const ProductRoutes = require('./routes/product');
+app.use('/product', ProductRoutes);
 // User Login Route
 const loginRoutes = require('./routes/user');
 app.use('/user', loginRoutes);
