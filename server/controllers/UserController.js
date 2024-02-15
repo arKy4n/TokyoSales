@@ -1,6 +1,5 @@
-const e = require("express");
 const User = require("../models/user");
-const jwt = require("jsonwebtoken");
+
 const { generateToken, verifyPassword } = require("../utils/utilities");
 
 const UserLogin = async (req, res) => {

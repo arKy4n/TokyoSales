@@ -9,17 +9,13 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Test Routes
-const apiRoutes = require("./routes/api");
-app.use("/api", apiRoutes);
-
-// User User Route
+// User Route
 const userRoutes = require("./routes/user");
 app.use("/user", userRoutes);
 
-// Route for Home Page
-const homeRoutes = require("./routes/home");
-app.use("/home", homeRoutes);
+// Product Route
+const productRoutes = require("./routes/product");
+app.use("/product", productRoutes);
 
 // Start the server
 app.listen(PORT, () => {

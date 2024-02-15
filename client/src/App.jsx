@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import { Account } from "./pages/Account";
+import Upload from "./pages/Upload.jsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/Login" Component={Login} />
           <Route path="/SignUp" Component={SignUp} />
           <Route path="/Account" Component={Account} />
+          <Route path="/Upload" element={<Upload />} />
         </Routes>
       </Router>
     </AuthProvider>
