@@ -5,19 +5,19 @@ class Product {
     this.productId = productId;
     this.productName = productName;
     this.productDescription = productDescription;
-    this.imagePath;
+    this.imagePath = imagePath;
   }
 
-  async Upload() {
+  Upload() {
     const sql =
       "INSERT into products (productname, description, image_path) VALUES ($1, $2, $3)";
-    const values = [this.productName, this.description, this.image_path];
-    await pool.query(sql, values);
+    const values = [this.productName, this.description, this.imagePath];
+    pool.query(sql, values);
   }
 
-  async Fetch() {
+  static Fetch() {
     const sql = "Select * FROM products";
-    const result = await pool.query(sql);
+    const result = pool.query(sql);
     return result;
   }
 }

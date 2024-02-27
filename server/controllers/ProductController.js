@@ -15,9 +15,9 @@ const UploadProduct = async (req, res) => {
   const product = new Product();
   product.productName = name;
   product.description = description;
-  product.image_path = filePath;
+  product.imagePath = filePath;
 
-  console.log(product.productName, product.description);
+  // console.log(product.productName, product.description);
   //   product.productName = name;
   //   product.description = description;
   await product.Upload();
@@ -33,4 +33,21 @@ const UploadProduct = async (req, res) => {
   }
 };
 
-module.exports = { UploadProduct };
+const DisplayProduct = async (req, res) => {
+  const displayProduct = await Product.Fetch();
+  // console.log("displayProduct: ", displayProduct);
+  console.log("rows: ", displayProduct.rows);
+  try {
+    // console.log("CHECK");
+    res.status(200).json({
+      success: true,
+      message: "Product displayed successfully",
+      productData: displayProduct.rows,
+    });
+  } catch (err) {
+    console.log("Error during displaying the product", err);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
+
+module.exports = { UploadProduct, DisplayProduct };

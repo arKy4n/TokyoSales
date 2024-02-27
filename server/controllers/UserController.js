@@ -52,7 +52,7 @@ const UserInfo = async (req, res) => {
   const user = new User();
   user.userId = req.user.Id;
   const result = await user.getAccountInfo();
-  console.log(result.rows[0]);
+  // console.log(result.rows[0]);
   try {
     res.status(200).json({
       success: true,
